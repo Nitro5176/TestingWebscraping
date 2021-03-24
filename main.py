@@ -103,9 +103,8 @@ def menu():
     print("Please Select the following options:")
     print("1) name of website to go through.")
     print("2) name of file you wish to name it.")
-    print("3) check if file exists, if not it will be created.")
-    print("4) Printing the file")
-    print("5: deleting a file")
+    print("3) Printing the file")
+    print("4: deleting a file")
     print("Please write 10 if you wish to end the program")
 
 def traffic_for_main(input):
@@ -121,31 +120,37 @@ def traffic_for_main(input):
     if input_string == 1:
         print("Please enter website you want to get information from: ")
         input_user = input()
-        requesting_website(input_user)
+        input_website = requesting_website(input_user)
+        print("Please enter where to place the html file: ")
+        input_user = input()
+        add_html_to_file(input_user, input_website)
+        return True
     #not done
     elif input_string == 2:
         print("Please enter the name of the file you want to make: ")
         input_user = input()
-    #not done
-    elif input_string == 3:
-        print("Please enter the file name if it exists: ")
-        input_user = input()
+        make_check_file(input_user)
+        return True
 
-    elif input_string == 4:
+    elif input_string == 3:
         print("Please enter the file you want to print out")
         input_user = input()
         print("Printing the file...")
         t.sleep(5)
         print_file(input_user)
+        return True
 
-    elif input_string == 5:
+    elif input_string == 4:
         print("Please enter the file you want to delete")
         input_user = input()
         flag = delete_file(input_user)
+        print("Deleting..." + input_user)
+        t.sleep(5)
         if flag:
             print("Deletion is successful")
         else:
             print("Deletion is unsuccessful")
+        return True
 
     elif input_string == 10:
         print("Exiting program...")
@@ -170,11 +175,12 @@ def main():
         traffic = traffic_for_main(user)
         if traffic == False:
             flag = False
+        t.sleep(5)
 
 
-user_input = input()
-website = requesting_website(user_input)
-print("name of file")
-file_name = input()
-make_check_file(file_name)
-add_html_to_file(file_name, website)
+# user_input = input()
+# website = requesting_website(user_input)
+# print("name of file")
+# file_name = input()
+# make_check_file(file_name)
+# add_html_to_file(file_name, website)
