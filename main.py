@@ -6,6 +6,7 @@ from http import HTTPStatus
 import tkinter as tk
 import time as t
 import os
+import json
 
 
 
@@ -107,6 +108,20 @@ def menu():
     print("4: deleting a file")
     print("Please write 10 if you wish to end the program")
 
+
+def create_beaut_request(html_file):
+    """
+    Description:
+    Gets a beautiful soup response and returns the beautiful object
+    :param html_file: the name of the html to beautiful soup in
+    :return: beautiful soup object
+    """
+    file = open(html_file, "r")
+    souped = BeautifulSoup(file, "html.parser")
+    print(souped.title)
+
+
+
 def traffic_for_main(input):
     """
     Description:
@@ -184,3 +199,15 @@ def main():
 # file_name = input()
 # make_check_file(file_name)
 # add_html_to_file(file_name, website)
+# create_beaut_request(file_name)
+#
+# print("do you want to delete a file?")
+# input_user = input()
+# input_user = input_user.lower().strip()
+# print(input_user)
+# if(input_user == "yes"):
+#     print("name of the file:")
+#     inputs = input()
+#     delete_file(inputs)
+# else:
+#     print("exiting")
