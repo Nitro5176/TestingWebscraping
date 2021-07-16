@@ -127,19 +127,21 @@ def create_beaut_request(html_file):
 # else:
 #     print("exiting")
 
-# response = r.get("https://www.worldometers.info/coronavirus/")
+response = r.get("https://www.worldometers.info/coronavirus/")
 # response = r.get("https://www.google.com/search?client=firefox-b-d&q=amc+stocks")
 # response = r.get("https://www.google.com/search?client=firefox-b-d&q=amd+stocks")
-response = r.get("https://www.google.com/search?client=firefox-b-d&q=weather+gatineau")
-html = response.text
+# response = r.get("https://www.google.com/search?client=firefox-b-d&q=weather+gatineau")
+html = response.content
+beautify = BeautifulSoup(response.content, "html.parser")
+testString = beautify.find("div", class_="maincounter-number")
+testString = testString.text
+print(beautify.find("div", class_="maincounter-number"))
+print("Coronovirus infected" + testString)
 make_check_file("test.html")
 add_html_to_file("test.html", html)
 print(response.encoding)
 try:
-    testEncode = response.content
-    testEncode = testEncode.decode(encoding='UTF-8')
-    testing = json.loads(testEncode)
+    testing = json.loads(response.content)
 except Exception as e:
     print(e)
 # testing = response.json()
-print(testing)
