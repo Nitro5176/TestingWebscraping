@@ -94,20 +94,6 @@ def requesting_website(website_name):
         print("There is an error in requesting the website")
         return False
 
-def menu():
-    """
-    Description:
-    creates a menu for the user to go through
-    :return: none
-    """
-    print()
-    print("Please Select the following options:")
-    print("1) name of website to go through.")
-    print("2) name of file you wish to name it.")
-    print("3) Printing the file")
-    print("4: deleting a file")
-    print("Please write 10 if you wish to end the program")
-
 
 def create_beaut_request(html_file):
     """
@@ -122,77 +108,6 @@ def create_beaut_request(html_file):
 
 
 
-def traffic_for_main(input):
-    """
-    Description:
-    Everything will be done in this function to reduce the main function
-    :param input: the user inputs the value
-    :return: only returns false if user wants to quit the program
-    """
-
-    input_string = int(input)
-
-    if input_string == 1:
-        print("Please enter website you want to get information from: ")
-        input_user = input()
-        input_website = requesting_website(input_user)
-        print("Please enter where to place the html file: ")
-        input_user = input()
-        add_html_to_file(input_user, input_website)
-        return True
-    #not done
-    elif input_string == 2:
-        print("Please enter the name of the file you want to make: ")
-        input_user = input()
-        make_check_file(input_user)
-        return True
-
-    elif input_string == 3:
-        print("Please enter the file you want to print out")
-        input_user = input()
-        print("Printing the file...")
-        t.sleep(5)
-        print_file(input_user)
-        return True
-
-    elif input_string == 4:
-        print("Please enter the file you want to delete")
-        input_user = input()
-        flag = delete_file(input_user)
-        print("Deleting..." + input_user)
-        t.sleep(5)
-        if flag:
-            print("Deletion is successful")
-        else:
-            print("Deletion is unsuccessful")
-        return True
-
-    elif input_string == 10:
-        print("Exiting program...")
-        t.sleep(3)
-        return False
-
-
-
-def main():
-    """
-    Description:
-    the job of this function is to make request calls and web scrape through a
-    webpage on html
-    :return: none
-    """
-    flag = True
-
-    while flag:
-        menu()
-        #will needed to come back and check if its a number or not
-        user = input()
-        traffic = traffic_for_main(user)
-        if traffic == False:
-            flag = False
-        t.sleep(5)
-
-
 # user_input = input()
 # website = requesting_website(user_input)
 # print("name of file")
@@ -200,7 +115,7 @@ def main():
 # make_check_file(file_name)
 # add_html_to_file(file_name, website)
 # create_beaut_request(file_name)
-#
+
 # print("do you want to delete a file?")
 # input_user = input()
 # input_user = input_user.lower().strip()
@@ -211,3 +126,20 @@ def main():
 #     delete_file(inputs)
 # else:
 #     print("exiting")
+
+# response = r.get("https://www.worldometers.info/coronavirus/")
+# response = r.get("https://www.google.com/search?client=firefox-b-d&q=amc+stocks")
+# response = r.get("https://www.google.com/search?client=firefox-b-d&q=amd+stocks")
+response = r.get("https://www.google.com/search?client=firefox-b-d&q=weather+gatineau")
+html = response.text
+make_check_file("test.html")
+add_html_to_file("test.html", html)
+print(response.encoding)
+try:
+    testEncode = response.content
+    testEncode = testEncode.decode(encoding='UTF-8')
+    testing = json.loads(testEncode)
+except Exception as e:
+    print(e)
+# testing = response.json()
+print(testing)
