@@ -139,9 +139,3 @@ print(beautify.find("div", class_="maincounter-number"))
 print("Coronovirus infected" + testString)
 make_check_file("test.html")
 add_html_to_file("test.html", html)
-print(response.encoding)
-try:
-    testing = json.loads(response.content)
-except Exception as e:
-    print(e)
-# testing = response.json()
