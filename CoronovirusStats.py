@@ -29,6 +29,7 @@ canadaCoronovirus = response.text
 
 #Testing if coronovirus stats shown worldwide
 beautify = BeautifulSoup(coronovirusWorldWide, "html.parser")
+#finding the next div with the class name, we didnt need to find twice because it only had one tag inside it
 testString1 = beautify.find("div", class_="maincounter-number")
 testString1 = testString1.text
 # print("Coronovirus infected WorldWide" + testString1)
