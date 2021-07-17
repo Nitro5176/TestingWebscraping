@@ -6,7 +6,8 @@ from http import HTTPStatus
 import time as t
 import os
 import json
-from PyQt5.QtWidgets import QMessageBox
+from tkinter import *
+import tkinter.messagebox
 
 
 
@@ -38,8 +39,7 @@ testString2 = beautify.find("div", class_="maincounter-number")
 testString2 = testString2.text
 # print("Canada wide infected Coronovirus" + testString2)
 
-popUp = QMessageBox()
-popUp.setWindowtitle("Coronovirus Stats ")
-popUp.setTest("WorldWide Coronovirus stats: " + testString1 + "\nCanada Coronovirus Stats: " + testString2)
+popUp = Tk()
+tkinter.messagebox.showinfo("Coronovirus Stats", "Worldwide Coronovirus Stats: " + testString1 + "\nCanada Coronovirus Stats: " + testString2)
 
-message = popUp.exec_() # shows the message
+popUp.mainLoop()
